@@ -1,0 +1,7 @@
+{
+  "name": "Clicker",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
