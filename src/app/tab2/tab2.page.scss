@@ -1,0 +1,124 @@
+.energy-card {
+  margin: 1rem;
+  
+  ion-card-content {
+    padding: 1rem;
+  }
+}
+
+.energy-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  
+  ion-icon {
+    font-size: 3rem;
+  }
+  
+  h2 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--ion-color-primary);
+  }
+  
+  p {
+    margin: 0;
+    color: var(--ion-color-medium);
+    font-size: 0.9rem;
+  }
+}
+
+ion-segment {
+  margin: 0 1rem 1rem 1rem;
+  
+  ion-segment-button {
+    --indicator-color: var(--ion-color-primary);
+    
+    ion-icon {
+      margin-top: 4px;
+    }
+  }
+}
+
+.upgrades-container {
+  padding: 0 1rem 1rem 1rem;
+}
+
+.upgrade-card {
+  margin-bottom: 1rem;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+  
+  ion-card-content {
+    padding: 1rem;
+  }
+}
+
+.upgrade-info {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.upgrade-icon {
+  position: relative;
+  flex-shrink: 0;
+  
+  ion-icon {
+    font-size: 3rem;
+    display: block;
+  }
+  
+  ion-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    font-size: 0.7rem;
+    min-width: 20px;
+    height: 20px;
+  }
+}
+
+.upgrade-details {
+  flex: 1;
+  
+  h3 {
+    margin: 0 0 0.25rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  
+  p {
+    margin: 0 0 0.5rem 0;
+    color: var(--ion-color-medium);
+    font-size: 0.9rem;
+  }
+}
+
+.upgrade-stats {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  
+  ion-chip {
+    margin: 0;
+    height: 24px;
+    font-size: 0.8rem;
+    
+    ion-icon {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+ion-button {
+  margin-top: 0.5rem;
+  font-weight: 600;
+  
+  &[disabled] {
+    opacity: 0.5;
+  }
+}
