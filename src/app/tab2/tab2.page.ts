@@ -2,12 +2,13 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { GameService, GameState, Upgrade } from '../services/game.service';
 import { Subscription } from 'rxjs';
 import { IonHeader, IonIcon, IonSegmentButton, IonToolbar, IonTitle, IonContent, IonCard, IonCardContent, IonSegment, IonLabel, IonBadge, IonChip, IonButton } from "@ionic/angular/standalone";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss'],
-  imports: [IonButton, IonChip, IonBadge, IonLabel, IonSegment, IonCardContent, IonCard, IonContent, IonTitle, IonToolbar, IonHeader, IonIcon, IonSegmentButton]
+  imports: [IonButton, IonChip, IonBadge, IonLabel, IonSegment, IonCardContent, IonCard, IonContent, IonTitle, IonToolbar, IonHeader, IonIcon, IonSegmentButton, CommonModule]
 })
 export class Tab2Page implements OnInit, OnDestroy {
   gameState!: GameState;

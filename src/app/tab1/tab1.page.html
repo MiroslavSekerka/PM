@@ -13,22 +13,21 @@
       <ion-card-content>
         <div class="energy-display">
           <ion-icon name="flash" color="warning"></ion-icon>
-          <h1>{{ formatNumber(gameState?.energy || 0) }}</h1>
+          <h1>{{ formatNumber(gameState.energy || 0) }}</h1>
           <p>Energie</p>
         </div>
         <div class="stats-row">
           <div class="stat-item">
             <ion-icon name="finger-print" color="primary"></ion-icon>
-            <span>{{ gameState?.energyPerClick || 1 }} / klik</span>
+            <span>{{ gameState.energyPerClick || 1 }} / klik</span>
           </div>
           <div class="stat-item">
             <ion-icon name="time" color="success"></ion-icon>
-            <span>{{ formatNumber(gameState?.energyPerSecond || 0) }} / s</span>
+            <span>{{ formatNumber(gameState.energyPerSecond || 0) }} / s</span>
           </div>
         </div>
       </ion-card-content>
     </ion-card>
-
 
     <div class="planet-container">
       <div 
