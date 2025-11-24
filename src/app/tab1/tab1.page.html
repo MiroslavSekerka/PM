@@ -1,17 +1,57 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Tab 1
+      Planet Clicker
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="game-container">
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+    <ion-card class="stats-card">
+      <ion-card-content>
+        <div class="energy-display">
+          <ion-icon name="flash" color="warning"></ion-icon>
+          <h1>{{ formatNumber(gameState?.energy || 0) }}</h1>
+          <p>Energie</p>
+        </div>
+        <div class="stats-row">
+          <div class="stat-item">
+            <ion-icon name="finger-print" color="primary"></ion-icon>
+            <span>{{ gameState?.energyPerClick || 1 }} / klik</span>
+          </div>
+          <div class="stat-item">
+            <ion-icon name="time" color="success"></ion-icon>
+            <span>{{ formatNumber(gameState?.energyPerSecond || 0) }} / s</span>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+
+    <div class="planet-container">
+      <div 
+        class="planet" 
+        [class.clicked]="clickAnimation"
+        (click)="onPlanetClick($event)">
+        <ion-icon name="planet" color="primary"></ion-icon>
+        
+        <div class="energy-popup" *ngIf="showEnergyPopup">
+          +{{ energyGained }}
+        </div>
+      </div>
+      <p class="click-hint">Klikni na planetu!</p>
+    </div>
+
+    <ion-card class="info-card">
+      <ion-card-content>
+        <ion-text color="medium">
+          <p class="ion-text-center">
+            💡 Získávej energii klikáním a kupuj vylepšení v obchodě!
+          </p>
+        </ion-text>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

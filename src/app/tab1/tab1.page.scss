@@ -1,0 +1,157 @@
+.game-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 1rem;
+}
+
+.stats-card {
+  margin: 0;
+  
+  ion-card-content {
+    padding: 1rem;
+  }
+}
+
+.energy-display {
+  text-align: center;
+  margin-bottom: 1rem;
+  
+  ion-icon {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  h1 {
+    margin: 0.5rem 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--ion-color-primary);
+  }
+  
+  p {
+    margin: 0;
+    color: var(--ion-color-medium);
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+  }
+}
+
+.stats-row {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--ion-color-light);
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  ion-icon {
+    font-size: 1.5rem;
+  }
+  
+  span {
+    font-weight: 500;
+  }
+}
+
+.planet-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 300px;
+}
+
+.planet {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+  position: relative;
+  
+  ion-icon {
+    font-size: 180px;
+    filter: drop-shadow(0 0 20px rgba(var(--ion-color-primary-rgb), 0.5));
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  &:active,
+  &.clicked {
+    transform: scale(0.95);
+  }
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.energy-popup {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--ion-color-warning);
+  font-size: 1.5rem;
+  font-weight: bold;
+  animation: popup 0.3s ease-out;
+  pointer-events: none;
+}
+
+@keyframes popup {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-30px);
+  }
+}
+
+.click-hint {
+  margin-top: 1rem;
+  color: var(--ion-color-medium);
+  font-size: 0.9rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.info-card {
+  margin: 0;
+  
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+}
