@@ -12,7 +12,14 @@ import { CommonModule } from '@angular/common';
   imports: [IonText, IonButton, IonLabel, IonItem, IonList, IonCardContent, IonIcon, IonCardTitle, IonCardHeader, IonCard, IonHeader, IonToolbar, IonTitle, IonContent, CommonModule]
 })
 export class Tab3Page implements OnInit, OnDestroy {
-  gameState!: GameState;
+  gameState: GameState = {
+    energy: 0,
+    totalEnergy: 0,
+    totalClicks: 0,
+    energyPerClick: 1,
+    energyPerSecond: 0,
+    upgrades: []
+  };
   private subscription!: Subscription;
 
   constructor(

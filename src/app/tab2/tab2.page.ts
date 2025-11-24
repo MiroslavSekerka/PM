@@ -11,7 +11,14 @@ import { CommonModule } from '@angular/common';
   imports: [IonButton, IonChip, IonBadge, IonLabel, IonSegment, IonCardContent, IonCard, IonContent, IonTitle, IonToolbar, IonHeader, IonIcon, IonSegmentButton, CommonModule]
 })
 export class Tab2Page implements OnInit, OnDestroy {
-  gameState!: GameState;
+  gameState: GameState = {
+    energy: 0,
+    totalEnergy: 0,
+    totalClicks: 0,
+    energyPerClick: 1,
+    energyPerSecond: 0,
+    upgrades: []
+  };
   private subscription!: Subscription;
   selectedSegment: 'click' | 'passive' = 'click';
 

@@ -12,7 +12,14 @@ import { CommonModule } from '@angular/common';
   imports: [IonText, IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardContent, IonIcon, CommonModule]
 })
 export class Tab1Page implements OnInit, OnDestroy {
-  gameState!: GameState;
+  gameState: GameState = {
+    energy: 0,
+    totalEnergy: 0,
+    totalClicks: 0,
+    energyPerClick: 1,
+    energyPerSecond: 0,
+    upgrades: []
+  };
   private subscription!: Subscription;
   clickAnimation = false;
   showEnergyPopup = false;

@@ -19,10 +19,7 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-segment 
-    [value]="selectedSegment" 
-    (ionChange)="segmentChanged($event)"
-    color="primary">
+  <ion-segment [value]="selectedSegment" (ionChange)="segmentChanged($event)" color="primary">
     <ion-segment-button value="click">
       <ion-label>Klikání</ion-label>
       <ion-icon name="finger-print"></ion-icon>
@@ -33,13 +30,17 @@
     </ion-segment-button>
   </ion-segment>
 
-  <div *ngIf="selectedSegment === 'click'" class="upgrades-container">
-    <ion-card *ngFor="let upgrade of clickUpgrades" class="upgrade-card">
+  @if (selectedSegment === 'click') {
+  <div class="upgrades-container">
+    @for (upgrade of passiveUpgrades; track upgrade.id) {
+    <ion-card class="upgrade-card">
       <ion-card-content>
         <div class="upgrade-info">
           <div class="upgrade-icon">
             <ion-icon [name]="upgrade.icon" color="primary"></ion-icon>
-            <ion-badge *ngIf="upgrade.level > 0" color="success">{{ upgrade.level }}</ion-badge>
+            @if (upgrade.level > 0) {
+            <ion-badge color="success">{{ upgrade.level }}</ion-badge>
+            }
           </div>
           <div class="upgrade-details">
             <h3>{{ upgrade.name }}</h3>
@@ -52,25 +53,28 @@
             </div>
           </div>
         </div>
-        <ion-button 
-          expand="block" 
-          [disabled]="!canAfford(upgrade)"
-          (click)="buyUpgrade(upgrade.id)"
+        <ion-button expand="block" [disabled]="!canAfford(upgrade)" (click)="buyUpgrade(upgrade.id)"
           [color]="canAfford(upgrade) ? 'success' : 'medium'">
           <ion-icon name="flash" slot="start"></ion-icon>
           {{ formatNumber(upgrade.currentCost) }}
         </ion-button>
       </ion-card-content>
     </ion-card>
+    }
   </div>
+  }
 
-  <div *ngIf="selectedSegment === 'passive'" class="upgrades-container">
-    <ion-card *ngFor="let upgrade of passiveUpgrades" class="upgrade-card">
+  @if (selectedSegment === 'passive') {
+  <div class="upgrades-container">
+    @for (upgrade of passiveUpgrades; track upgrade.id) {
+    <ion-card class="upgrade-card">
       <ion-card-content>
         <div class="upgrade-info">
           <div class="upgrade-icon">
             <ion-icon [name]="upgrade.icon" color="secondary"></ion-icon>
-            <ion-badge *ngIf="upgrade.level > 0" color="success">{{ upgrade.level }}</ion-badge>
+            @if (upgrade.level > 0) {
+            <ion-badge color="success">{{ upgrade.level }}</ion-badge>
+            }
           </div>
           <div class="upgrade-details">
             <h3>{{ upgrade.name }}</h3>
@@ -83,15 +87,14 @@
             </div>
           </div>
         </div>
-        <ion-button 
-          expand="block" 
-          [disabled]="!canAfford(upgrade)"
-          (click)="buyUpgrade(upgrade.id)"
+        <ion-button expand="block" [disabled]="!canAfford(upgrade)" (click)="buyUpgrade(upgrade.id)"
           [color]="canAfford(upgrade) ? 'success' : 'medium'">
           <ion-icon name="flash" slot="start"></ion-icon>
           {{ formatNumber(upgrade.currentCost) }}
         </ion-button>
       </ion-card-content>
     </ion-card>
+    }
   </div>
+  }
 </ion-content>

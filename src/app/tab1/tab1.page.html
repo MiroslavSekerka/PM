@@ -29,6 +29,7 @@
       </ion-card-content>
     </ion-card>
 
+
     <div class="planet-container">
       <div 
         class="planet" 
@@ -36,9 +37,11 @@
         (click)="onPlanetClick($event)">
         <ion-icon name="planet" color="primary"></ion-icon>
         
-        <div class="energy-popup" *ngIf="showEnergyPopup">
-          +{{ energyGained }}
-        </div>
+        @if (showEnergyPopup) {
+          <div class="energy-popup">
+            +{{ energyGained }}
+          </div>
+        }
       </div>
       <p class="click-hint">Klikni na planetu!</p>
     </div>
