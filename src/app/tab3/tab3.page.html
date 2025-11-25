@@ -125,15 +125,19 @@
     <ion-card-content>
       <ion-button 
         expand="block" 
-        color="danger" 
+        [color]="resetClickCount === 0 ? 'danger' : 'warning'"
         (click)="resetGame()">
         <ion-icon name="refresh" slot="start"></ion-icon>
-        Resetovat hru
+        @if (resetClickCount === 0) {
+          <span>Resetovat hru</span>
+        } @else {
+          <span>Klikni znovu pro potvrzení!</span>
+        }
       </ion-button>
       
       <ion-text color="medium">
         <p class="reset-warning">
-          Tato akce je nevratná a smaže veškerý herní progres!
+          Klikni dvakrát pro reset hry. Tato akce smaže veškerý progres!
         </p>
       </ion-text>
     </ion-card-content>

@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { GameService, GameState } from '../services/game.service';
 import { Subscription } from 'rxjs';
-import { AlertController } from '@ionic/angular';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardHeader, IonCardTitle, IonIcon, IonCardContent, IonList, IonItem, IonLabel, IonButton, IonText } from "@ionic/angular/standalone";
 import { CommonModule } from '@angular/common';
 
@@ -20,12 +19,12 @@ export class Tab3Page implements OnInit, OnDestroy {
     energyPerSecond: 0,
     upgrades: []
   };
-  private subscription!: Subscription;
 
-  constructor(
-    private gameService: GameService,
-    private alertController: AlertController
-  ) {}
+private subscription!: Subscription;
+  resetClickCount = 0;
+  private resetTimeout: any;
+
+  constructor(private gameService: GameService) {}
 
   ngOnInit() {
     this.subscription = this.gameService.state$.subscribe(state => {
@@ -37,28 +36,23 @@ export class Tab3Page implements OnInit, OnDestroy {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+    if (this.resetTimeout) {
+      clearTimeout(this.resetTimeout);
+    }
   }
 
-  async resetGame() {
-    const alert = await this.alertController.create({
-      header: 'Reset hry',
-      message: 'Opravdu chceš resetovat celou hru? Přijdeš o veškerý progres!',
-      buttons: [
-        {
-          text: 'Zrušit',
-          role: 'cancel'
-        },
-        {
-          text: 'Resetovat',
-          role: 'destructive',
-          handler: () => {
-            this.gameService.resetGame();
-          }
-        }
-      ]
-    });
-
-    await alert.present();
+  resetGame() {
+    this.resetClickCount++;
+    
+    if (this.resetClickCount === 1) {
+      this.resetTimeout = setTimeout(() => {
+        this.resetClickCount = 0;
+      }, 3000);
+    } else if (this.resetClickCount >= 2) {
+      clearTimeout(this.resetTimeout);
+      this.gameService.resetGame();
+      this.resetClickCount = 0;
+    }
   }
 
   formatNumber(num: number): string {

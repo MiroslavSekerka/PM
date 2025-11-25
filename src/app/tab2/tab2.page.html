@@ -32,7 +32,7 @@
 
   @if (selectedSegment === 'click') {
   <div class="upgrades-container">
-    @for (upgrade of passiveUpgrades; track upgrade.id) {
+    @for (upgrade of clickUpgrades; track upgrade.id) {
     <ion-card class="upgrade-card">
       <ion-card-content>
         <div class="upgrade-info">
@@ -71,7 +71,7 @@
       <ion-card-content>
         <div class="upgrade-info">
           <div class="upgrade-icon">
-            <ion-icon [name]="upgrade.icon" color="secondary"></ion-icon>
+            <ion-icon [name]="upgrade.icon" color="primary"></ion-icon>
             @if (upgrade.level > 0) {
             <ion-badge color="success">{{ upgrade.level }}</ion-badge>
             }

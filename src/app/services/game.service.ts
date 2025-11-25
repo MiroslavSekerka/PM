@@ -166,7 +166,6 @@ export class GameService {
   }
 
   resetGame(): void {
-    if (confirm('Opravdu chceš resetovat celou hru? Přijdeš o veškerý progres!')) {
       this.gameState = {
         energy: 0,
         totalEnergy: 0,
@@ -181,7 +180,6 @@ export class GameService {
       };
       this.updateState();
       this.saveGame();
-    }
   }
 
   private updateState(): void {
