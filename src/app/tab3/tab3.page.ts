@@ -29,6 +29,7 @@ private subscription!: Subscription;
   loadingNasa = false;
   showNasaCard = false;
   spaceFact = '';
+  private nasaDataLoaded = false;
 
   constructor(
     private gameService: GameService,
@@ -38,9 +39,6 @@ private subscription!: Subscription;
   ngOnInit() {
     this.subscription = this.gameService.state$.subscribe(state => {
       this.gameState = state;
-
-    this.spaceFact = this.nasaService.getRandomSpaceFact();
-    this.loadNasaData();
     });
   }
 
@@ -55,10 +53,14 @@ private subscription!: Subscription;
 
   loadNasaData() {
     this.loadingNasa = true;
+    this.nasaDataLoaded = true;
+    
+    console.log('Načítám NASA data...');
     this.nasaService.getAstronomyPictureOfTheDay().subscribe({
       next: (data) => {
         this.nasaData = data;
         this.loadingNasa = false;
+        console.log('NASA data úspěšně načtena');
       },
       error: (error) => {
         console.error('Chyba při načítání NASA dat:', error);
@@ -69,10 +71,9 @@ private subscription!: Subscription;
 
   toggleNasaCard() {
     this.showNasaCard = !this.showNasaCard;
-  }
-
-  refreshSpaceFact() {
-    this.spaceFact = this.nasaService.getRandomSpaceFact();
+    if (this.showNasaCard && !this.nasaDataLoaded) {
+      this.loadNasaData();
+    }
   }
 
   resetGame() {

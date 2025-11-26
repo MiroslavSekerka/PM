@@ -51,21 +51,4 @@ export class NasaService {
         })
       );
   }
-
-
-  getRandomSpaceFact(): string {
-    const facts = [
-      'Země není dokonalá koule, ale spíše "oblý koláč" - je zploštělá na pólech.',
-      'Měsíc se od Země vzdaluje rychlostí asi 3,8 cm za rok.',
-      'Každý den dopadne na Zemi asi 100 tun meteoritického materiálu.',
-      'Nejbližší hvězda (kromě Slunce) je Proxima Centauri, vzdálená 4,24 světelných let.',
-      'Saturn je tak lehký, že by plaval ve vodě (kdyby existoval dostatečně velký bazén).',
-      'Mléčná dráha obsahuje 200-400 miliard hvězd.',
-      'Mezinárodní vesmírná stanice (ISS) obíhá Zemi rychlostí 28 000 km/h.',
-      'Světlo ze Slunce k nám trvá asi 8 minut.',
-      'Většina atomů ve tvém těle pochází z explodujících hvězd.',
-      'Vesmír se rozpíná rychleji než rychlost světla.'
-    ];
-    return facts[Math.floor(Math.random() * facts.length)];
-  }
 }
