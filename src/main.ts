@@ -29,7 +29,8 @@ import {
   sparkles,
   telescope,
   chevronUp,
-  chevronDown
+  chevronDown,
+  cart
 } from 'ionicons/icons';
 
 addIcons({
@@ -54,7 +55,8 @@ addIcons({
   'sparkles': sparkles,
   'telescope': telescope,
   'chevron-up': chevronUp,
-  'chevron-down': chevronDown
+  'chevron-down': chevronDown,
+  'cart': cart
 });
 
 
