@@ -1,14 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { GameService, GameState } from '../services/game.service';
 import { Subscription } from 'rxjs';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardHeader, IonCardTitle, IonIcon, IonCardContent, IonList, IonItem, IonLabel, IonButton, IonText } from "@ionic/angular/standalone";
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardHeader, IonCardTitle, IonIcon, IonCardContent, IonList, IonItem, IonLabel, IonButton, IonText, IonSpinner } from "@ionic/angular/standalone";
 import { CommonModule } from '@angular/common';
+import { NasaService, NasaApod } from '../services/nasa.service';
 
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss'],
-  imports: [IonText, IonButton, IonLabel, IonItem, IonList, IonCardContent, IonIcon, IonCardTitle, IonCardHeader, IonCard, IonHeader, IonToolbar, IonTitle, IonContent, CommonModule]
+  imports: [IonSpinner, IonText, IonButton, IonLabel, IonItem, IonList, IonCardContent, IonIcon, IonCardTitle, IonCardHeader, IonCard, IonHeader, IonToolbar, IonTitle, IonContent, CommonModule]
 })
 export class Tab3Page implements OnInit, OnDestroy {
   gameState: GameState = {
@@ -24,11 +25,22 @@ private subscription!: Subscription;
   resetClickCount = 0;
   private resetTimeout: any;
 
-  constructor(private gameService: GameService) {}
+  nasaData: NasaApod | null = null;
+  loadingNasa = false;
+  showNasaCard = false;
+  spaceFact = '';
+
+  constructor(
+    private gameService: GameService,
+    private nasaService: NasaService
+  ) {}
 
   ngOnInit() {
     this.subscription = this.gameService.state$.subscribe(state => {
       this.gameState = state;
+
+    this.spaceFact = this.nasaService.getRandomSpaceFact();
+    this.loadNasaData();
     });
   }
 
@@ -39,6 +51,28 @@ private subscription!: Subscription;
     if (this.resetTimeout) {
       clearTimeout(this.resetTimeout);
     }
+  }
+
+  loadNasaData() {
+    this.loadingNasa = true;
+    this.nasaService.getAstronomyPictureOfTheDay().subscribe({
+      next: (data) => {
+        this.nasaData = data;
+        this.loadingNasa = false;
+      },
+      error: (error) => {
+        console.error('Chyba při načítání NASA dat:', error);
+        this.loadingNasa = false;
+      }
+    });
+  }
+
+  toggleNasaCard() {
+    this.showNasaCard = !this.showNasaCard;
+  }
+
+  refreshSpaceFact() {
+    this.spaceFact = this.nasaService.getRandomSpaceFact();
   }
 
   resetGame() {

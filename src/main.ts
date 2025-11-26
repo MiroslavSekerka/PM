@@ -4,6 +4,7 @@ import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular/standalo
 
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
+import { provideHttpClient } from '@angular/common/http';
 
 import { addIcons } from 'ionicons';
 import { 
@@ -24,7 +25,11 @@ import {
   planetOutline,
   nuclear,
   arrowUp,
-  checkmark
+  checkmark,
+  sparkles,
+  telescope,
+  chevronUp,
+  chevronDown
 } from 'ionicons/icons';
 
 addIcons({
@@ -45,7 +50,11 @@ addIcons({
   'planet-outline': planetOutline,
   'nuclear': nuclear,
   'arrow-up': arrowUp,
-  'checkmark': checkmark
+  'checkmark': checkmark,
+  'sparkles': sparkles,
+  'telescope': telescope,
+  'chevron-up': chevronUp,
+  'chevron-down': chevronDown
 });
 
 
@@ -54,5 +63,6 @@ bootstrapApplication(AppComponent, {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular(),
     provideRouter(routes, withPreloading(PreloadAllModules)),
+    provideHttpClient()
   ],
 });

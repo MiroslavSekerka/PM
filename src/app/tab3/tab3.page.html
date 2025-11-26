@@ -142,4 +142,50 @@
       </ion-text>
     </ion-card-content>
   </ion-card>
+
+    <ion-card class="space-fact-card" (click)="refreshSpaceFact()">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="sparkles"></ion-icon>
+          Vesmírný fakt
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{ spaceFact }}</p>
+        <ion-text color="medium">
+          <small>Klikni pro další fakt</small>
+        </ion-text>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="nasa-card">
+      <ion-card-header>
+        <ion-card-title (click)="toggleNasaCard()">
+          <ion-icon name="telescope"></ion-icon>
+          NASA - Astronomický obrázek dne
+          <ion-icon [name]="showNasaCard ? 'chevron-up' : 'chevron-down'" class="expand-icon"></ion-icon>
+        </ion-card-title>
+      </ion-card-header>
+      
+      @if (showNasaCard) {
+        <ion-card-content>
+          @if (loadingNasa) {
+            <div class="loading-container">
+              <ion-spinner></ion-spinner>
+              <p>Načítám data z NASA...</p>
+            </div>
+          } @else if (nasaData) {
+            <h3>{{ nasaData.title }}</h3>
+            <p class="nasa-date">{{ nasaData.date }}</p>
+            @if (nasaData.url && nasaData.media_type === 'image') {
+              <img [src]="nasaData.url" [alt]="nasaData.title" class="nasa-image" />
+            }
+            <p class="nasa-explanation">{{ nasaData.explanation }}</p>
+            <ion-text color="medium">
+              <small>Zdroj: NASA APOD API</small>
+            </ion-text>
+          }
+        </ion-card-content>
+        }
+      </ion-card>
 </ion-content>
